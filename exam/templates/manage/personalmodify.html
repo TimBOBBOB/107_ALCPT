@@ -1,0 +1,107 @@
+{% extends 'base/Base.html' %}
+{% load staticfiles %}
+{% block title %}ALCPT測驗系統-修改個人資料{% endblock %}
+{% block content %}
+{% include 'base/Index_nav.html' %}
+{% include 'base/ShowTime.html' %}
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("確定要修改嗎?");
+if (r==true)
+  {
+  alert("修改成功!");
+  return true;
+  }
+else
+  {
+  return false;
+  }
+}
+</script>
+    <div class="container w3-myfont w3-large">
+        <div class="panel panel-default">
+            <div class="panel-heading w3-center">
+                <h3>修改個人資料</h3>
+            </div>
+            <form action="" method="post" class="w3-container ">
+                {% csrf_token %}
+                 <center>
+                    <div class="w3-padding-16">
+                        密碼：<input class="w3-border w3-round" type="text" name="psd" style="width:30%" value="{{ user1.Password  }}">
+                    </div>
+
+                    <div class="w3-padding-16">
+                        再次輸入密碼：<input class=" w3-border w3-round" type="text" name="psd2" style="width:30%" id="password2">
+                    </div>
+                    <div class="w3-padding-16">
+                        姓名：<input class=" w3-border w3-round" type="text" name="name" style="width:30%" id="name" value="{{ user1.FullName }}">
+                    </div>
+                    <div class="w3-padding-16">
+                        性別：
+                        {% if  user2.Sex == '男' %}
+                            <input class="w3-radio" type="radio" value="男" name="sex" checked>
+                            <label>男</label>
+                            <input class="w3-radio" type="radio" value="女" name="sex">
+                            <label>女</label>
+                        {% else%}
+                            <input class="w3-radio" type="radio"  value="男" name="sex">
+                            <label>男</label>
+                            <input class="w3-radio" type="radio" value="女" name="sex" checked>
+                            <label>女</label>
+                        {% endif %}
+                    </div>
+                    <div class="w3-padding-16">
+                        系別：
+                        <select class="w3-select" style="width:30%" name="department" id="department">
+                            <option value="{{user2.Major_id}}" >{{user2.Major}}</option>
+                            {% if user2.Major_id != 1 %}
+                            <option value="1">法律系</option>
+                            {% endif %}
+                            {% if user2.Major_id != 2 %}
+                            <option value="2">資管系</option>
+                            {% endif %}
+                            {% if user2.Major_id != 3 %}
+                            <option value="3">運管系</option>
+                            {% endif %}
+                            {% if user2.Major_id != 4 %}
+                            <option value="4">財管系</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="w3-padding-16">
+                        年班：
+                        <input class=" w3-border w3-round"  type="text" name="cy" style="width:30%" id="cy" value="{{ user2.Class }}">
+                    </div>
+                    <div class="w3-padding-16">
+                        中隊：
+                            <select class="w3-select" name="company" style="width:30%" id="company">
+                            <option value="{{user2.Company_id}}">{{user2.Company}}</option>
+                            {% if user2.Company_id != 1 %}
+                            <option value="1">學生一中隊</option>
+                            {% endif %}
+                            {% if user2.Company_id != 2 %}
+                            <option value="2">學生二中隊</option>
+                            {% endif %}
+                            {% if user2.Company_id != 3 %}
+                            <option value="3">學生三中隊</option>
+                            {% endif %}
+                            {% if user2.Company_id != 4 %}
+                            <option value="4">學生四中隊</option>
+                            {% endif %}
+                            {% if user2.Company_id != 5 %}
+                            <option value="5">實習旅部</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="w3-padding-16">
+                        隊號：<input class=" w3-border w3-round"type="text" name="comp_num" style="width:30%" id="c_number" value="{{ user2.Comp_Num }}">
+                    </div>
+
+                    <button class="w3-btn w3-white w3-border w3-round-large w3-margin" type="submit" value="修改" onclick="javascript:return show_confirm()">修改</button>
+                </center>
+            </form>
+            </div>
+        </div>
+ </div>
+{% endblock %}

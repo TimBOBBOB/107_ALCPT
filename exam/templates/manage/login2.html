@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html  lang="as">
+{% load staticfiles %}
+<head>
+  <title>ALCPT測驗系統-登入</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="first.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css"> </head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse text-center justify-content-center" id="navbar3SupportedContent">
+        <a class="navbar-brand"><font color="white" size="6px"><B>ALCPT線上練習平台</B></font></a>
+<!--
+        <ul class="navbar-nav">
+          <li class="nav-item text-capitalize">
+            <a class="nav-link text-light"> Do not you have an account?</a>
+          </li>
+        </ul>
+        <a class="ml-3 btn navbar-btn btn-secondary" href="/accounts/register/">Register now</a>
+-->
+      </div>
+    </div>
+  </nav>
+  <div style="height:700px; background-image: url(&quot;../../static/images/indexbg.png&quot;);" >
+    <div class="py-5 ml-auto h-25"></div>
+    <div class="container">
+      <div class="row">
+        <div class="align-self-center col-md-6 text-secondary">
+          <h1 class="text-center text-md-left display-1"><B>ALCPT&nbsp;</B></h1>
+          <p class="lead"><B>American Language Course Placement Test</B></p>
+        </div>
+        <div class="col-md-6" id="book">
+          <div class="card">
+            <div class="card-body p-4">
+              <h1 class="pb-3 ml-auto"> </h1>
+              <form action="" method="post">
+                    {% if username == None%}
+                        <form role="form" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" id= login value="登入" class="btn btn-secondary">
+                        </form>
+                    {% else %}
+                        <h3>Welcome you are signed in as {{ username }}</h3>
+                        <button class="w3-button w3-white w3-border w3-round-large"><a href="{% url 'login2' %}?action=logout">LogOut</a></button>
+                    {% endif %}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-3 bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="row text-light p-1 ml-5">
+            <div class="">
+              <img class="img-fluid d-block" src="{% static "images/l.png" %}" width="50" height="50"> </div>
+            <div class="col">
+              <h1 class="">Learn</h1>
+            </div>
+            <div class="">
+              <img class="img-fluid d-block" src="{% static "images/p.png" %}" width="50" height="50"> </div>
+            <div class="col">
+              <h1 class="">Practice</h1>
+            </div>
+            <div class="">
+              <img class="img-fluid d-block" src="{% static "images/t.png" %}" height="50" width="50"> </div>
+            <div class="col">
+              <h1 class="">Exam</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid text-center">
+    <P></P>
+    <p><img src="{% static 'images/logo.png' %}" style="width:5%"><B>Copyright by 2017 國防大學資管系 MIS Lab</B></p>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+
+</html>

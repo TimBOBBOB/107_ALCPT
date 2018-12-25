@@ -1,0 +1,51 @@
+{% extends 'base/exam_manager_base.html' %}
+
+{% block title %}ALCPT測驗系統-選取受測者{% endblock %}
+
+{% block content %}
+
+<div class='container w3-myfont'>
+    <div class="row">
+        <div class="col">
+             <div class="panel panel-default">
+                <div class="panel-heading"><h4>檢視受測者名單</h4></div>
+                 <div class="panel-body">
+                    <form method="post" action="{% url 'check_member' %}">
+                        {% csrf_token %}
+                        <select name="id" id="id">
+                            <option selected="selected" enabled>受測者名單編號</option>
+                            {% for foo in exam %}
+                                <option value="{{ foo.id }}">{{ foo.id }}</option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-success" type="submit">查詢</button>
+                    </form>
+                    </div>
+                    <div class="container">
+                            <table class="w3-table-all">
+                                <thead>
+                                <tr class="w3-light-grey w3-card-4">
+                                    <th>學號</th>
+                                    <th>姓名</th>
+                                    <th>系別</th>
+                                    <th>中隊</th>
+                                </tr>
+                                </thead>
+                                {% for z, y in User %}
+                                    {% if '5' in z.Authority %}
+                                        <tr class="w3-hover-green">
+                                            <td>{{ z.Username }}</td>
+                                            <td>{{ z.FullName }}</td>
+                                            <td>{{ y.Major }}</td>
+                                            <td>{{ y.Company }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+
+                    </div><br>
+             </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

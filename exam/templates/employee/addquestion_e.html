@@ -1,0 +1,30 @@
+{% extends 'base/Question_bank_base.html' %}
+{% load staticfiles %}
+{% block title %} ALCPT測驗系統-新增試題 {% endblock%}
+{% block content %}
+<br>
+<div class="container">
+  <div class="row">
+      <div class="col-sm-4">
+         <td><a href="{% url 'addquestion_talk_e' %}"><img src="{% static "images/talk.jpg" %}" style="width:80%" alt="addquestion_talk_e"/></a></td>
+      </div>
+      <div class="col-sm-4">
+          <td><a href="{% url 'addquestion_short_conversation_e' %}"><img src="{% static "images/short_conversation.jpg" %}" style="width:80%" alt="addquestion_short_conversation_e"/></a></td>
+      </div>
+      <div class="col-sm-4">
+          <td><a href="{% url 'addquestion_noun_e' %}"><img src="{% static "images/noun.jpg" %}" style="width:80%" alt="addquestion_noun_e"/></a></td>
+      </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+      <div class="col-sm-4 col-sm-offset-2">
+          <td><a href="{% url 'addquestion_grammar_e' %}"><img src="{% static "images/grammar.jpg" %}" style="width:80%" alt="addquestion_grammar_e"/></a></td>
+      </div>
+      <div class="col-sm-4">
+          <td><a href="{% url 'addquestion_reading_e' %}"><img src="{% static "images/reading.jpg" %}" style="width:80%" alt="addquestion_reading_e"/></a></td>
+      </div>
+  </div>
+</div>
+{% endblock %}

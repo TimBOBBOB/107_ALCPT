@@ -1,0 +1,110 @@
+{% extends 'base/exam_manager_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-檢視考卷 {% endblock%}
+{% block content %}
+	<div class='container w3-myfont'>
+		<div class="row">
+			<div class="col">
+				 <div class="panel panel-default">
+					<div class="panel-heading"><h4>檢視考卷</h4></div>
+					 <div class="panel-body">
+                        <form method="POST" action="{%url 'check_topic'%}">
+                            {% csrf_token %}
+                            <select name="t" t="t">
+                                <option selected="selected" enabled>考卷編號</option>
+                    　				{% for Topic in Topic %}<option value="{{Topic.id}}">{{Topic.id}}</option>{% endfor %}
+                            </select>
+                            <button class="btn btn-success" type="submit">查詢</button>
+                        </form>
+                        <form name ="auto"  method="get" id = "alcpt">
+                            <h1>考卷編號：{{t}}</h1>
+                            <h2>問答（40題）</h2>
+                            {% for x in tq.all %}
+                                <div id="q{{ forloop.counter}}" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px;margin-bottom:20px ;background-color:#FFFFFF ;"><table border="0" ><tr>
+                                    <td rowspan="2" width="100%">
+                                        <h3 >{{ forloop.counter}}.<audio src = "{{x.question.url}}" controls = "controls"></audio></h3>
+                                        <input type= "hidden" name = "q{{ forloop.counter }}" value= "{{ x.id }}">
+                                        <div class="w3-container w3-margin-left">
+                                            <input type="radio" name="t{{ x.id }}" id="{{ forloop.counter}}"  value="A">A.&nbsp{{ x.a }}<br>
+                                            <input type="radio" name="t{{ x.id }}" id="{{ forloop.counter}}" value="B" >B.&nbsp{{ x.b }}<br>
+                                            <input type="radio" name="t{{ x.id }}" id="{{ forloop.counter}}" value="C" >C.&nbsp{{ x.c }}<br>
+                                            <input type="radio" name="t{{ x.id }}" id="{{ forloop.counter}}" value="D" >D.&nbsp{{ x.d }}
+                                        </div>
+                                    </td>
+                                    </table>
+                                </div>
+                            {% endfor %}
+                            <h2>短篇對話（20題）</h2>
+                            {% for x in sq.all %}
+                                <div id="q{{ forloop.counter}}" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px;margin-bottom:20px ;background-color:#FFFFFF ;">
+                                    <table border="0" ><tr><td rowspan="2" width="120%">
+                                    <h3 >{{ forloop.counter}}.<audio src = "{{x.question.url}}" controls = "controls"></audio></h3>
+                                        <input type= "hidden" name = "q{{ forloop.counter}}" value= "{{ x.id }}">
+                                        <div class="w3-container w3-margin-left">
+                                            <input type="radio" name="s{{ x.id }}" id="{{ forloop.counter}}"  value="A">A.&nbsp{{ x.a }}<br>
+                                            <input type="radio" name="s{{ x.id }}" id="{{ forloop.counter}}" value="B" >B.&nbsp{{ x.b }}<br>
+                                            <input type="radio" name="s{{ x.id }}" id="{{ forloop.counter}}" value="C" >C.&nbsp{{ x.c }}<br>
+                                            <input type="radio" name="s{{ x.id }}" id="{{ forloop.counter}}" value="D" >D.&nbsp{{ x.d }}
+                                        </div>
+                                    </td>
+                                   </table>
+                                </div>
+                            {% endfor %}
+                            <h2>名詞片語（15題）</h2>
+                            {% for x in nq.all %}
+                                <div id="q{{ forloop.counter}}" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px;margin-bottom:20px ;background-color:#FFFFFF ;">
+                                    <table border="0" ><tr><td rowspan="2" width="120%">
+                                        <h3 >{{ forloop.counter}}.   {{ x.question }} </h3>
+                                        <input type= "hidden" name = "q{{ forloop.counter}}" value= "{{ x.id }}">
+                                        <div class="w3-container w3-margin-left">
+                                            <input type="radio" name="n{{ x.id }}" id="{{ forloop.counter}}"  value="A">A.&nbsp{{ x.a }}<br>
+                                            <input type="radio" name="n{{ x.id }}" id="{{ forloop.counter}}" value="B" >B.&nbsp{{ x.b }}<br>
+                                            <input type="radio" name="n{{ x.id }}" id="{{ forloop.counter}}" value="C" >C.&nbsp{{ x.c }}<br>
+                                            <input type="radio" name="n{{ x.id }}" id="{{ forloop.counter}}" value="D" >D.&nbsp{{ x.d }}
+                                        </div>
+                                    </td>
+                                    </table>
+                                </div>
+                            {% endfor %}
+                            <h2>文法（15題）</h2>
+                            {% for x in gq.all %}
+                                <div id="q{{ forloop.counter}}" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px;margin-bottom:20px ;background-color:#FFFFFF ;">
+                                    <table border="0" ><tr><td rowspan="2" width="120%">
+                                        <h3 >{{ forloop.counter|add:75}}.{{ x.question }}</h3>
+                                        <input type= "hidden" name = "q{{ forloop.counter}}" value= "{{ x.id }}">
+                                        <div class="w3-container w3-margin-left">
+                                            <input type="radio" name="g{{ x.id }}" id="{{ forloop.counter}}"  value="A">A.&nbsp{{ x.a }}<br>
+                                            <input type="radio" name="g{{ x.id }}" id="{{ forloop.counter}}" value="B" >B.&nbsp{{ x.b }}<br>
+                                            <input type="radio" name="g{{ x.id }}" id="{{ forloop.counter}}" value="C" >C.&nbsp{{ x.c }}<br>
+                                            <input type="radio" name="g{{ x.id }}" id="{{ forloop.counter}}" value="D" >D.&nbsp{{ x.d }}
+                                        </div>
+                                    </td>
+                                    </table>
+                                </div>
+                            {% endfor %}
+                            <h2>段落理解（10題）</h2>
+                            {% for x in rq.all %}
+                                <div id="q{{ forloop.counter}}" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px;margin-bottom:20px ;background-color:#FFFFFF ;"><table border="0" ><tr><td rowspan="2" width="120%">
+                                    <h3>{{ forloop.counter}}.{{ x.question }}</h3>
+                                    <input type= "hidden" name = "q{{ forloop.counter|add:90}}" value= "{{ x.id }}">
+                                    <div class="w3-container w3-margin-left">
+                                        <input type="radio" name="r{{ x.id }}" id="{{ forloop.counter}}"  value="A">A.&nbsp{{ x.a }}<br>
+                                        <input type="radio" name="r{{ x.id }}" id="{{ forloop.counter}}" value="B" >B.&nbsp{{ x.b }}<br>
+                                        <input type="radio" name="r{{ x.id }}" id="{{ forloop.counter}}" value="C" >C.&nbsp{{ x.c }}<br>
+                                        <input type="radio" name="r{{ x.id }}" id="{{ forloop.counter}}" value="D" >D.&nbsp{{ x.d }}
+                                    </div>
+                                </td>
+                                </table>
+                                </div>
+                            {% endfor %}
+                        </form>
+
+                                </div>
+                            </div>
+                         </div>
+					 </div>
+				 </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

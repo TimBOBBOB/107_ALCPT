@@ -1,0 +1,30 @@
+{% extends 'base/question_manager_base.html' %}
+{% load staticfiles %}
+{% block title %} ALCPT測驗系統-新增試題 {% endblock%}
+{% block content %}
+<br>
+<div class="container w3-myfont">
+  <div class="row">
+      <div class="col-sm-4">
+         <td><a href="{% url 'addquestion_talk' %}"><img src="{% static "images/talk.jpg" %}" style="width:80%" alt="addquestion_talk"/></a></td>
+      </div>
+      <div class="col-sm-4">
+          <td><a href="{% url 'addquestion_short_conversation' %}"><img src="{% static "images/short_conversation.jpg" %}" style="width:80%" alt="addquestion_short_conversation"/></a></td>
+      </div>
+      <div class="col-sm-4">
+          <td><a href="{% url 'addquestion_noun' %}"><img src="{% static "images/noun.jpg" %}" style="width:80%" alt="addquestion_noun"/></a></td>
+      </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+      <div class="col-sm-4 col-sm-offset-2">
+          <td><a href="{% url 'addquestion_grammar' %}"><img src="{% static "images/grammar.jpg" %}" style="width:80%" alt="addquestion_grammar"/></a></td>
+      </div>
+      <div class="col-sm-4">
+          <td><a href="{% url 'addquestion_reading' %}"><img src="{% static "images/reading.jpg" %}" style="width:80%" alt="addquestion_reading"/></a></td>
+      </div>
+  </div>
+</div>
+{% endblock %}

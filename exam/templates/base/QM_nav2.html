@@ -1,0 +1,41 @@
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("確定要登出嗎?");
+if (r==true)
+  {
+  alert("登出成功!");
+  return true;
+  }
+else
+  {
+  return false;
+  }
+}
+</script>
+<nav class="navbar navbar-inverse w3-myfont">
+  <div class="container-fluid w3-large">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand w3-xlarge" href="{% url 'Index'%}">ALCPT線上練習平台</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'addquestion_e'%}">題庫操作員首頁</a></li>
+        <li><a href=/addquestion_talk/>問答</a></li>
+        <li><a href=/addquestion_short_conversation/>短篇對話</a></li>
+        <li><a href=/addquestion_noun/>名詞片語</a></li>
+        <li><a href=/addquestion_grammar/>文法</a></li>
+        <li><a href=/addquestion_reading/>段落理解</a></li>
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a data-toggle="tab" href="#"><span class="glyphicon glyphicon-user"></span> {{ username }}</a></li>
+         <li><a href="{% url 'login2' %}?action=logout" onclick="javascript:return show_confirm()"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+      </ul>
+    </div>
+    </div>
+</nav>

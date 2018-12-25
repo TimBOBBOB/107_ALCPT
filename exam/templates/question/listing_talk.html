@@ -1,0 +1,105 @@
+<!-- index.html (ch08www project) -->
+{% extends 'base/question_manager_base.html' %}
+{% block title %} ALCPT測驗系統-檢視試題-問答 {% endblock%}
+{% block content %}
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("確定要刪除嗎?");
+if (r==true)
+  {
+  alert("刪除成功!");
+  return true;
+  }
+else
+  {
+  return false;
+  }
+}
+</script>
+<div class="container w3-myfont">
+            <div class="w3-container w3-margin">
+                <button class="w3-btn w3-white w3-border w3-round-large"><a href="/addquestion_talk/">新增試題</a></button>
+                <button class="w3-btn w3-white w3-border w3-round-large"><a href="/review_listing_talk/">審核試題</a></button>
+            </div>
+        <form method="GET" action="{%url 'search_talk'%}">
+        <select name="dropdown">
+            <option selected="selected" disabled>查詢項目</option>
+            <option value="question">題目</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="answer">答案</option>
+        </select>
+        <input name="query" {%if query%}value="{{query}}"{%endif%}placeholder="">
+        <button class="btn btn-success" type="submit">查詢</button>
+        </form>
+        <div class="row">
+            <div class="col">
+                <div class="panel panel-default">
+                     <div class="panel-heading"><h4>檢視文法試題</h4></div>
+                        <div class="panel-body">
+                            <table width="300" border="3">
+                                <thead>
+                                <style>
+                                        table {
+                                                border-spacing: 1;
+                                                width: 100%;
+                                                border: 1px solid #ddd;
+                                                }
+
+                                        th, td {
+                                                padding: 14px;
+                                                }
+                                        tr:nth-child(even) {
+                                                background-color: #bcd4d6
+                                                }
+                                </style>
+                                <tr class="w3-Pale-Blue">
+                                    <td align="middle"><B>題目</B></td>
+                                    <td align="middle"><B>A</B></td>
+                                    <td align="middle"><B>B</B></td>
+                                    <td align="middle"><B>C</B></td>
+                                    <td align="middle"><B>D</B></td>
+                                    <td align="middle"><B>答案</B></td>
+                                    <td align="middle"><B>刪除/修改</B></td>
+                                </tr>
+                                </thead>{% for p in posts %}
+                                <tr>
+                                <td width="20%">
+                                    <audio controls>
+                                        <source src ="{{p.question.url}}" type="audio/mpeg">
+                                     </audio>
+                                </td>
+                                <td width="10%">{%if p.answer == 'A'%}<font color="red"><strong>{%endif%}{{p.a}}</strong></font></td>
+                                <td width="10%">{%if p.answer == 'B'%}<font color="red"><strong>{%endif%}{{p.b}}</strong></font></td>
+                                <td width="10%">{%if p.answer == 'C'%}<font color="red"><strong>{%endif%}{{p.c}}</strong></font></td>
+                                <td width="10%">{%if p.answer == 'D'%}<font color="red"><strong>{%endif%}{{p.d}}</strong></font></td>
+                                <td align="middle" width="5%">{{p.answer}}</td>
+                                <td align="middle" width="10%">
+                                    <form action="{% url 'delete_talk' pk=p.id%}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="question" value="{{question }}" />
+                                        <button type="submit" class="btn btn-default" onclick="javascript:return show_confirm()">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </form>
+                                    <a href="{% url 'edit_talk'  qs=p.id%}">
+                                        <button type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        </button></a></td>
+                                {% endfor %}
+                                    </tr>
+                             </table>
+    <!--
+            <form action="{% url 'check_talk'%}" method="get">
+            <input type="submit" value="檢查">
+            </form>
+            -->
+                        </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

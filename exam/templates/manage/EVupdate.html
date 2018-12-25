@@ -1,0 +1,40 @@
+{% extends 'base/SA_base.html' %}
+
+{% block title %}ALCPT測驗系統-修改使用者資料{% endblock %}
+
+{% block content %}
+
+    <script language="JavaScript">
+        function toggle(source) {
+        checkboxes = document.getElementsByName('Authority');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }</script>
+<div class="container w3-myfont">
+    <form method="post" action="{% url 'updateing' id=instance.id%}">
+
+    {% csrf_token %}
+    <table border="1">
+    <p>帳號名稱：<input type="hidden" name="Username" value="{{ instance.Username }}">{{ instance.Username }}</p>
+    <p>密碼：{{ instance.Password }}<input type="button"
+                value="重設" onclick="location.href='{% url 'ressetpwd' id=instance.id %}"></p>
+    <p>原權限：{% if '1' in instance.Authority%}系統管理員，{% endif %}
+                    {% if '2' in instance.Authority%}考試管理員，{% endif %}
+                    {% if '3' in instance.Authority%}題庫管理員，{% endif %}
+                    {% if '6' in instance.Authority%}題庫操縱者，{% endif %}
+                    {% if '4' in instance.Authority%}成績檢閱者，{% endif %}
+                    {% if '5' in instance.Authority%}受測者。{% endif %}</p>
+    <p>新權限：<input type="checkbox" name="Authority" value="1" {% if '1' in instance.Authority %} checked="checked" {% endif %}>系統管理員
+                <input type="checkbox" name="Authority" value="2" {% if '2' in instance.Authority %} checked="checked" {% endif %}>考試管理員
+                <input type="checkbox" name="Authority" value="3" {% if '3' in instance.Authority %} checked="checked" {% endif %}>題庫管理員
+                <input type="checkbox" name="Authority" value="6" {% if '6' in instance.Authority %} checked="checked" {% endif %}>題庫操縱者
+                <input type="checkbox" name="Authority" value="4" {% if '4' in instance.Authority %} checked="checked" {% endif %}}>成績檢閱者
+                <input type="checkbox" name="Authority" value="5" {% if '5' in instance.Authority %} checked="checked" {% endif %}}>受測者</p>
+                <p><input type="checkbox" onclick="toggle(this)" />全選</p>
+        <p><button class="w3-button w3-white w3-border w3-round-large" type="submit"  onclick="">送出</button>
+            <button class="w3-button w3-white w3-border w3-round-large"type='reset' type="button"  onclick="location.href='{% url 'SAhome' %}'">取消</button></p>
+    </table>
+    </form>
+</div>
+{% endblock %}

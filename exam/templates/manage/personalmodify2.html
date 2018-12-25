@@ -1,0 +1,46 @@
+{% extends 'base/Base.html' %}
+{% load staticfiles %}
+{% block title %}ALCPT測驗系統-修改個人資料{% endblock %}
+{% block content %}
+{% include 'base/Index_nav.html' %}
+{% include 'base/ShowTime.html' %}
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("確定要修改嗎?");
+if (r==true)
+  {
+  alert("修改成功!");
+  return true;
+  }
+else
+  {
+  return false;
+  }
+}
+</script>
+    <div class="container w3-myfont w3-large">
+        <div class="panel panel-default">
+            <div class="panel-heading w3-center">
+                <h3>修改個人資料</h3>
+            </div>
+            <form action="" method="post" class="w3-container ">
+                {% csrf_token %}
+                 <center>
+                    <div class="w3-padding-16">
+                        密碼：<input class="w3-border w3-round" type="text" name="psd" style="width:30%" value="{{ user1.Password  }}">
+                    </div>
+
+                    <div class="w3-padding-16">
+                        再次輸入密碼：<input class=" w3-border w3-round" type="text" name="psd2" style="width:30%" id="password2">
+                    </div>
+                    <div class="w3-padding-16">
+                        姓名：<input class=" w3-border w3-round" type="text" name="name" style="width:30%" id="name" value="{{ user1.FullName }}">
+                    </div>
+                    <button class="w3-btn w3-white w3-border w3-round-large w3-margin" type="submit" value="修改" onclick="javascript:return show_confirm()">修改</button>
+                </center>
+            </form>
+            </div>
+        </div>
+ </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base/question_manager_base.html' %}
+{% block title %} ALCPT測驗系統-審核試題-段落理解 {% endblock%}
+{% block content %}
+<div class='container w3-myfont'>
+<div class='alert alert-warning'><p>確定審核完畢</p></div>
+<form name='my form' action='.' method='POST'>
+    {% csrf_token %}
+    <table>
+        <tr><td align="middle"><font size="5"> 審核：</font></td><td>{{review_form_reading.enabled}}</td></tr>
+    </table>
+    <br>
+    <button class="w3-button w3-white w3-border w3-round-large" type='submit'>確認</button>
+</form>
+</div>
+{% endblock %}

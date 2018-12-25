@@ -1,0 +1,42 @@
+{% extends 'base/subjects_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-受測者 {% endblock%}
+{% block content %}
+<br>
+<div class="container w3-center w3-myfont">
+      <h1>公告</h1>
+      <table class="w3-table-all">
+        <thead>
+          <tr class="w3-light-grey w3-center w3-card-4">
+            <th>公告時間</th>
+            <th>公告內容</th>
+          </tr>
+        </thead>
+          {% for Post in Post %}
+        <tr class="w3-hover-green w3-center">
+        <td>{{ Post.created }}</td>
+        <td>{{ Post.text }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    <br>
+  <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+          <td><a href="{% url 'listeningpractice'%}"><img src="{% static "images/21.jpg" %}" class="img-responsive" style="width:100%" alt="listeningpractice"/></a></td>
+      </div>
+      <div class="col-sm-2">
+          <td><a href="{% url 'writepractice'%}"><img src="{% static "images/22.jpg" %}" class="img-responsive" style="width:100%" alt="writepractice"/></a></td>
+      </div>
+      <div class="col-sm-2">
+        <td><a href="{% url 'Continue'%}"><img src="{% static "images/23.jpg" %}" class="img-responsive" style="width:100%" alt="test"/></a></td>
+      </div>
+      <div class="col-sm-2 ">
+          <td><a href="{% url 'realtest'%}"><img src="{% static "images/19.jpg" %}" class="img-responsive" style="width:100%" alt=""/></a></td>
+      </div>
+      <div class="col-sm-2">
+        <td><a href="{% url 'userinfo' %}"><img src="{% static "images/20.jpg" %}" class="img-responsive" style="width:100%" alt=""/></a></td>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

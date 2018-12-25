@@ -1,0 +1,15 @@
+{% extends 'base/question_manager_base.html' %}
+{% load staticfiles %}
+{% block title %} ALCPT測驗系統-修改試題 {% endblock%}
+
+{% block content %}
+<table align = "center"width="1300" height="290">
+    <tr>
+        <td><a href="/update_talk/"><img src="{% static "images/talk.jpg" %}" alt="update_talk"/></a></td>
+        <td><a href="/update_short_conversation/"><img src="{% static "images/short_conversation.jpg" %}" alt="update_short_conversation"/></a></td>
+        <td><a href="/update_noun"><img src="{% static "images/noun.jpg" %}" alt="update_noun"/></a></td>
+        <td><a href="/update_grammar"><img src="{% static "images/grammar.jpg" %}" alt="update_grammar"/></a></td>
+        <td><a href="/update_reading"><img src="{% static "images/reading.jpg" %}" alt="update_reading"/></a></td>
+    </tr>
+</table>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base/SA_base.html' %}
+
+{% block title %}ALCPT測驗系統-新增使用者資料{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("確定要送出嗎?");
+if (r==true)
+  {
+  alert("新增成功!");
+  return true;
+  }
+else
+  {
+  alert("新增失敗!");
+  return false;
+  }
+}
+</script>
+<div class="container w3-myfont">
+    <form method="post" action="{% url 'create' %}">
+      {% csrf_token %}
+    <p>帳號名稱：<input type="text" name="Username"></p>
+    <p>帳號權限：
+        <input type="checkbox" name="Authority" value="1">系統管理員
+        <input type="checkbox" name="Authority" value="2">考試管理員
+        <input type="checkbox" name="Authority" value="3">題庫管理員
+        <input type="checkbox" name="Authority" value="6">題庫操作員
+        <input type="checkbox" name="Authority" value="4">成績檢閱者
+        <input type="checkbox" name="Authority" value="5" checked="checked">受測者</p>
+        <p><button class="w3-button w3-white w3-border w3-round-large" type="submit"  onclick="javascript:return show_confirm()">送出</button>
+            <button class="w3-button w3-white w3-border w3-round-large"type='reset' type="button" onclick="location.href={% url 'SAhome' %}">取消</button></p>
+    </form>
+</div>
+{% endblock %}

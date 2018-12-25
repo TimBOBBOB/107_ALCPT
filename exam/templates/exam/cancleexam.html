@@ -1,0 +1,52 @@
+{% extends 'base/exam_manager_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-刪除考試 {% endblock%}
+{% block content %}
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("確定要刪除嗎?");
+if (r==true)
+  {
+  alert("刪除成功!");
+  return true;
+  }
+else
+  {
+  return false;
+  }
+}
+</script>
+	<div class="container w3-myfont">
+		<div class="row">
+			<div class="col"> 
+				 <div class="panel panel-default">
+					<div class="panel-heading"><h4>刪除考試</h4></div>
+						<div class="panel-body">
+							  <table class="w3-table-all">
+								<thead>
+								  <tr class="w3-light-grey w3-card-4">
+									<th>考試日期</th>
+								  	<th>修改</th>
+								  </tr>
+								</thead>
+							  		{% for Exam in Exam %}
+								<tr class="w3-hover-green">
+								<td>{{ Exam.ddate }}</td>
+								<td><form action="{% url 'delete_exam' pk=Exam.id%}" method="post" style="display: inline;">
+									{% csrf_token %}
+									<input type="hidden" name="question" value="{{question }}" />
+									<button type="submit" class="btn btn-default" onclick="javascript:return show_confirm()">
+										<span class="glyphicon glyphicon-trash"></span>
+									</button>
+									</form></td>
+								</tr>
+							  	{% endfor %}
+							</table>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base/exam_manager_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-修改模擬鑑測 {% endblock%}
+
+{% block content %}
+	<div class="container ">
+		<div class="row">
+			<div class="col"> 
+				 <div class="panel panel-default">
+					<div class="panel-heading"><h4>修改考試&lang;模擬測驗&rang;</h4></div>
+						<div class="panel-body">
+							<div class="w3-container">
+								<div class="row">
+								<div class="col"> 
+								<div class="w3-panel w3-pale-light-grey w3-bottombar w3-border-light-grey w3-border w3-round-large">
+									<h4>說明:</h4>
+									<h5>&nbsp;&nbsp;&nbsp;1.可以於已建立的考試試題中選擇一份考試試題進行修改，並且可以在此試題內做題目的新增修改與刪除。*確認試卷時，必須符合60題聽力及40題閱讀的限制。<br>
+										&nbsp;&nbsp;&nbsp;2.可將以將已建立的試卷題更改為綜合練習的歷屆試卷題。<br>
+										&nbsp;&nbsp;&nbsp;3.可以修改模擬鑑測的考試時間，設定考試起始時間，以一小時為單位進行考試。<br>
+										&nbsp;&nbsp;&nbsp;4.可以修改模擬鑑測的受測者名單，以個人或單位新增、刪除受測者名單。<br>
+									</h5>
+								</div>
+								<div class="w3-panel w3-pale-light-grey w3-bottombar w3-border-light-grey w3-border w3-round-large">
+									<h4>請選擇欲修改的考試:<br></h4>
+
+								</div>
+								<div class="w3-panel w3-pale-light-grey w3-bottombar w3-border-light-grey w3-border w3-round-large">
+									<h4>請設定考試時間:<br></h4>
+										<div>
+											<input type="text" class="vDateField">
+										</div>
+								</div>
+								<div class="w3-panel w3-pale-light-grey w3-bottombar w3-border-light-grey w3-border w3-round-large">
+									<h4>請管理受測者名單:<br></h4>
+								</div>
+								</div>
+							</div>
+						</div>             
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!-- index.html (ch08www project) -->
+{% extends 'base/Question_bank_base.html' %}
+{% block title %} ALCPT測驗系統-檢視試題-段落理解 {% endblock%}
+{% block content %}
+<div class="container w3-myfont">
+            <div class="w3-container w3-margin">
+                <button class="w3-btn w3-white w3-border w3-round-large"><a href="/addquestion_reading_e/">新增題目</a></button>
+            </div>
+            <table width="300 " border="3" class="w3-table-all w3-hoverable">
+                <thead>
+                <tr>
+                    <td>question</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>answer</td>
+                </tr>
+                </thead>{% for p in posts %}
+                <tr>
+                <tbody>
+                <td>{{p.question}}</td>
+                <td>{{p.a}}</td>
+                <td>{{p.b}}</td>
+                <td>{{p.c}}</td>
+                <td>{{p.d}}</td>
+                <td>{{p.answer}}</td>
+                {% endfor %}</tbody>
+                    </tr>
+             </table>
+    {% endblock %}

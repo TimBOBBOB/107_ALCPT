@@ -1,0 +1,30 @@
+{% extends 'base/subjects_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-學員專區 {% endblock%}
+{% block content %}
+<br>
+<div class="container w3-myfont">
+	<div class="container w3-myfont">
+		<div class="row">
+			<div class="col">
+				<div class="panel-body">
+					  <table class="w3-table-all">
+						<thead>
+						  <tr class="w3-light-grey w3-card-4">
+							<th>考試日期</th>
+							<th>考試成績</th>
+						  </tr>
+						</thead>
+						 {% for score in score %}
+						<tr class="w3-hover-green">
+						<td>{{ score.Exam_Date }}</td>
+						<td>{{ score.Score }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,192 @@
+{% extends 'base/subjects_base2.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-聽力練習 {% endblock%}
+{% block content %}
+<style type="text/css">
+#customers
+  {
+  font-family: "Comic Sans MS",'STFangsong', cursive ;
+  font-weight: bold;
+  width:85%;
+  border-collapse:collapse;
+  margin:0px auto;
+  }
+#customers2
+  {
+  font-family: "Comic Sans MS",'STFangsong', cursive ;
+  font-weight: bold;
+  width:85%;
+  border-collapse:collapse;
+  margin:0px auto;
+  border:0px solid #98bf21;
+
+  }
+
+
+#customers td, #customers th 
+  {
+  font-family: "Comic Sans MS",'STFangsong', cursive ;
+  font-weight: bold;
+  font-size:1em;
+  border:1px solid #98bf21;
+  padding:3px 7px 2px 7px;
+  }
+
+#customers th 
+  {
+  font-family: "Comic Sans MS",'STFangsong', cursive ;
+  font-weight: bold;
+  font-size:1.1em;
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#A7C942;
+  color:#ffffff;
+  }
+
+#customers tr.alt td 
+  {
+  color:#000000;
+  background-color:#EAF2D3;
+  }
+
+
+</style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/JavaScript"></script>
+    <script LANGUAGE="JavaScript">
+        var LastID = 1;
+        var doque = 0;
+        var notque = 0;
+        
+        $(document).ready(function ()
+        {
+            $("#paper :radio").change(function ()
+            {               
+                document.getElementById("tq"+$(this).attr("id") ).innerHTML =$(this).val() ;
+
+                document.getElementById($(this).attr("name")+$(this).attr("name")+$(this).attr("name") ).scrollIntoView() ; 
+
+                document.getElementById($(this).attr("name")).style.background="yellow" ;
+                var chose_ID = Number($(this).attr("name"))
+                if(LastID==chose_ID){}
+                else{
+                document.getElementById(LastID ).style.background="white" ;
+                LastID = chose_ID;}
+
+            });
+        });       
+    </script>
+ 
+
+    <script language="JavaScript"> //停留时间
+        d1 = new Date();
+        function fun(){
+            d2 = new Date();
+            diff = (d2.getTime() - d1.getTime())/1000;
+            diff = Math.round(diff);
+            second = diff % 60;
+            minute = Math.round((diff-30)/60);
+            hour = Math.round((diff-30)/3600);
+            second = (second<10)?"0"+second:second;
+            minute = (minute<10)?"0"+minute:minute;
+            hour = (hour<10)?"0"+hour:hour;
+            showTime.value = hour + ":" + minute + ":" + second;
+            setInterval("fun()",1000);}
+    </script>
+
+<div class="w3-sidebar w3-card w3-myfont" style="width:25%;height:85%;right:2%; top :10%; background-color:#FFD382 ;font-size:20px">
+  <div class="panel-heading"><h3 class="w3-bar-item" style = "text-align:center"></h3>停留時間：<input type="text" id="showTime"></div>
+    <table border="1" height = "300" id="customers" style = "font-size:18px ; background-color:#FFFFFF ;" >
+        <tr>
+            <th COLSPAN = 2><CENTER>聽力練習（問答）</CENTER></th>
+        </tr>
+        <tr>
+			{% for item in total %}
+            <td >全部題數</td><td >{{item}}</td>
+            {% endfor  %}
+        </tr>
+        <tr>
+			{% for item in correct %}
+            <td>正確題數</td><td >{{item}}</td>
+            {% endfor  %}
+        </tr>
+        <tr>
+			{% for item in wrong %}
+            <td>錯誤題數</td><td >{{item}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+			{% for item in cr %}
+            <td>正確率</td><td >{{item}}%</td>
+            {% endfor  %}
+        </tr>
+   </table>
+</div>
+<div class="w3-myfont">
+    <div class="row">
+        <div class="col">
+            <div style="margin-right:30% ;margin-left:10% ;margin-top:5% ;">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>聽力練習（問答）</h4>
+                    </div>
+                <div  id = "paper" class="panel-body" style="background-color:#FFD382 ; font-size:25px;">
+                    <form name ="auto"  method="get" id = "alcpt">
+                        {% for x in q.all %}
+                            <div id="q{{ forloop.counter}}" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px;margin-bottom:20px ;background-color:#FFFFFF ;"><table border="0" ><tr><td rowspan="2" width="120%">
+                                <h1 >{% for item in total %}{{ item|add:1}}.{% endfor  %}<audio src = "{{x.question.url}}" controls = "controls"></audio></h1>
+                                <input type= "hidden" name = "q{{ forloop.counter }}" value= "{{ x.id }}">
+                                {% for item in total %}
+                                <input type= "hidden" name = "total" value= "{{ item }}">
+                                {% endfor  %}
+                                {% for item in correct %}
+                                <input type= "hidden" name = "correct" value= "{{ item }}">
+                                {% endfor  %}
+                                {% for item in wrong %}
+                                <input type= "hidden" name = "wrong" value= "{{ item }}">
+                                {% endfor  %}
+                                {% for item in cr %}
+                                <input type= "hidden" name = "cr" value= "{{ item }}">
+                                {% endfor  %}
+                                <div class="w3-container w3-margin-left">
+                                    <input type="radio" name="{{ x.id }}" id="{{ forloop.counter}}"  value="A">A.&nbsp{{ x.a }}<br>
+                                    <input type="radio" name="{{ x.id }}" id="{{ forloop.counter}}" value="B" >B.&nbsp{{ x.b }}<br>
+                                    <input type="radio" name="{{ x.id }}" id="{{ forloop.counter}}" value="C" >C.&nbsp{{ x.c }}<br>
+                                    <input type="radio" name="{{ x.id }}" id="{{ forloop.counter}}" value="D" >D.&nbsp{{ x.d }}
+                                </div>
+                            </td>
+                            </tr>
+                            </table>
+                            </div>
+                        {% endfor %}
+                        <button class="w3-button w3-white w3-border w3-round-large"  type="submit" onclick="auto.action='/talkanswer/';"/>看答案</button>
+                    </form>
+        <script language="JavaScript">
+        d1 = new Date();
+        function auto()
+        {
+            d2 = new Date();
+            diff = (d2.getTime() - d1.getTime())/1000;
+            diff = Math.round(diff);
+            second = diff % 60;
+            minute = Math.round((diff-30)/60);
+            hour = Math.round((diff-30)/3600);
+
+            second = (second<10)?"0"+second:second;
+            minute = (minute<10)?"0"+minute:minute;
+            hour = (hour<10)?"0"+hour:hour;
+
+            showTime.value = hour + ":" + minute + ":" + second;
+            if (hour>=1){
+              document.auto.submit();}
+        }
+        setInterval("auto()",1000);
+        </script>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,65 @@
+{% extends 'base/exam_manager_base.html' %}
+
+{% block title %}ALCPT測驗系統-選取受測者{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+function check_all(obj,cName)
+{
+    var checkboxs = document.getElementsByName(cName);
+    for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
+}
+</script>
+
+    <div class="container w3-myfont">
+    <form method="GET" action="{%url 'search_member'%}">
+        <input type="text" name="searchTerm" {% if searchTerm %}value="{{ searchTerm }}"{% endif %}placeholder="學號或姓名">
+        <select name="dep">
+            <option selected="selected" enabled>系別</option>
+            <option value="1">法律系</option>
+            <option value="2">資管系</option>
+            <option value="3">運籌系</option>
+            <option value="4">財管系</option>
+        </select>
+        <select name="comp">
+            <option selected="selected" enabled>中隊</option>
+　				<option value="1">學生一中隊</option>
+　				<option value="2">學生二中隊</option>
+　				<option value="3">學生三中隊</option>
+　				<option value="4">學生四中隊</option>
+                <option value="5">實習旅部</option>
+        </select>
+        <button class="btn btn-success" type="submit">查詢</button>
+    </form>
+    </div>
+    <div class="container w3-center">
+        <form method="POST" action="{%url 'get_member'%}">
+            {% csrf_token %}
+        <h1></h1>
+            <table class="w3-table-all">
+                <thead>
+                <tr class="w3-light-grey w3-card-4">
+                    <th><input type="checkbox" name="all" onclick="check_all(this,'c')" /> 全選</th>
+                    <th>學號</th>
+                    <th>姓名</th>
+                    <th>系別</th>
+                    <th>中隊</th>
+                </tr>
+                </thead>
+                {% for User1, User2 in User %}
+                    {% if '5' in User1.Authority %}
+                        <tr class="w3-hover-green">
+                            <td><input type="checkbox" name="c" value="{{ User1.Username }}"></td>
+                            <td>{{ User1.Username }}</td>
+                            <td>{{ User1.FullName }}</td>
+                            <td>{{ User2.Major }}</td>
+                            <td>{{ User2.Company }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        <br><button class="btn btn-success" type="submit">確定</button>
+        </form>
+    </div>
+
+{% endblock %}

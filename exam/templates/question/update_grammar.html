@@ -1,0 +1,30 @@
+{% extends 'base/question_manager_base.html' %}
+{% block title %} ALCPT測驗系統-修改試題-文法 {% endblock%}
+{% block content %}
+<div class='container w3-myfont'>
+    <div class="row">
+        <div class="col">
+             <div class="panel panel-default">
+                <div class="panel-heading"><h4>修改文法試題</h4></div>
+                 <div class="panel-body">
+                     <div class='alert alert-warning'><p>需要填滿全部的空格</p></div>
+                        <form name='my form' action='.' method='POST'>
+                            {% csrf_token %}
+                            <table width="300" >
+                                <tr><td align="left"><font size="5"> 題目:</font></td><td >{{ edit_form_grammar.question}}</td></tr>
+                                <tr><td align="left"><font size="5"> A:&nbsp&nbsp&nbsp&nbsp</font></td><td>{{ edit_form_grammar.a}}</td></tr>
+                                <tr><td align="left"><font size="5"> B:&nbsp&nbsp&nbsp&nbsp</font></td><td>{{ edit_form_grammar.b}}</td></tr>
+                                <tr><td align="left"><font size="5"> C:&nbsp&nbsp&nbsp&nbsp</font></td><td>{{ edit_form_grammar.c}}</td></tr>
+                                <tr><td align="left"><font size="5"> D:&nbsp&nbsp&nbsp&nbsp</font></td><td>{{ edit_form_grammar.d}}</td></tr>
+                                <tr><td align="left"><font size="5"> 答案:</font></td><td><font size="5">{{ edit_form_grammar.answer}}</font></td></tr>
+                            </table>
+                            <br>
+                            <button class="w3-button w3-white w3-border w3-round-large" type='submit'>送出</button>
+                            <button class="w3-button w3-white w3-border w3-round-large"type='reset'>清除重填</button>
+                        </form>
+                 </div>
+             </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

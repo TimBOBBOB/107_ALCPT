@@ -1,0 +1,38 @@
+{% extends 'exam/base.html' %}
+
+{% block title %} ALCPT測驗系統-註冊 {% endblock%}
+
+{% block content %}
+	<div class="container">    
+		<div class="row">
+			<div class="col"> 
+			<form action="" method="post">
+				{% csrf_token %}
+				<div>帳號：<input type="text" name="username" id="username"></div>
+				<div>密碼：<input type="password" name="password" id="password"></div>
+				<div>再次輸入密碼：<input type="password" name="password2" id="password2"></div>
+				<div>姓名：<input type="text" name="name" id="name"></div>
+				<div>性別：<input type="radio" value="男" name="gender" checked>男
+						<input type="radio" value="女" name="gender" >女</div>
+				<div>系別：<select name="department" id="department">
+					<option value="法律系">法律系</option>
+					<option value="資管系">資管系</option>
+					<option value="運管系">運管系</option>
+					<option value="財管系">財管系</option>
+					</select></div>
+				<div>年班：<input type="text" name="cy" id="cy"></div>
+				<div>中隊：<select name="company" id="company">
+					<option value="實習旅部">實習旅部</option>
+					<option value="學生一中隊">學生一中隊</option>
+					<option value="學生二中隊">學生二中隊</option>
+					<option value="學生三中隊">學生三中隊</option>
+					<option value="學生四中隊">學生四中隊</option>
+					</select></div>
+				<div>隊號：<input type="text" name="c_number" id="c_number"></div>
+				<input type="submit" value="註冊">
+			</form>
+			<a href="/index/">回首頁</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

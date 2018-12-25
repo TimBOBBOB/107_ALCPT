@@ -1,0 +1,27 @@
+{% extends 'base/exam_manager_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-考試管理員 {% endblock%}
+{% block content %}
+<br>
+<div class="container w3-myfont">
+  <div class="row">
+      <div class="col-sm-4">
+          <td><a href="{% url 'addexam'%}"><img src="{% static "images/25.jpg" %}" class="img-responsive" style="width:80%" alt="addexam"/></a></td>
+      </div>
+      <div class="col-sm-4">
+          <td><a href="{% url 'alterexam'%}"><img src="{% static "images/24.jpg" %}" class="img-responsive" style="width:80%" alt="alterexam"/></a></td>
+      </div>
+      <div class="col-sm-4">
+        <td><a href="{% url 'cancleexam'%}"><img src="{% static "images/26.jpg" %}" class="img-responsive" style="width:80%" alt="cancleexam"/></a></td>
+      </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+          <td><a href="{% url 'list_post'%}"><img src="{% static "images/27.jpg" %}" class="img-responsive" style="width:80%" alt=""/></a></td>
+      </div>
+  </div>
+</div>
+{% endblock %}

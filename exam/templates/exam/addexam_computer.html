@@ -1,0 +1,101 @@
+{% extends 'base/exam_manager_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-新增考試（電腦選題） {% endblock%}
+
+{% block content %}
+<div class="container w3-myfont">
+	<div class="row">
+        <div class="col">
+				<div class="panel panel-default">
+                <div class="panel-heading"><h4>考卷編號：{{t}}</h4></div>
+
+					<div class="panel-body">
+						<form name ="auto" action="/score/" method="get">
+							<h2>問答</h2>
+							{% for n in r1.all %}
+							<div id="{{ n.id }}" class="container-fluid bg-secondary" style="padding-top:36px;padding-bottom:70px">
+								<h3>{{ forloop.counter }}.<audio controls><source src ="{{n.question.url}}" type="audio/mpeg"></audio></h3>
+								<div class="w3-container w3-margin-left">
+									<input type="radio" name="{{ n.id }}" value="A"> {{ n.a }}
+									<br>
+									<input type="radio" name="{{ n.id }}" value="B"> {{ n.b }}
+									<br>
+									<input type="radio" name="{{ n.id }}" value="C"> {{ n.c }}
+									<br>
+									<input type="radio" name="{{ n.id }}" value="D"> {{ n.d }}
+								</div>
+							</div>
+							{% endfor %}
+
+							<h2>短篇對話</h2>
+							{% for m in r2.all %}
+							<div id="{{ m.id }}" class="container-fluid bg-secondary" style="padding-top:36px;padding-bottom:70px">
+								<h3>{{ forloop.counter }}.<audio controls><source src ="{{m.question.url}}" type="audio/mpeg"></audio></h3>
+								<div class="w3-container w3-margin-left">
+									<input type="radio" name="{{ m.id }}" value="A"> {{ m.a }}
+									<br>
+									<input type="radio" name="{{ m.id }}" value="B"> {{ m.b }}
+									<br>
+									<input type="radio" name="{{ m.id }}" value="C"> {{ m.c }}
+									<br>
+									<input type="radio" name="{{ m.id }}" value="D"> {{ m.d }}
+								</div>
+							</div>
+							{% endfor %}
+
+							<h2>名詞片語</h2>
+							{% for x in r3.all %}
+							<div id="{{ x.id }}" class="container-fluid bg-secondary" style="padding-top:22px;padding-bottom:70px">
+								<h3>{{ forloop.counter }}.{{x.question}}</h3>
+								<div class="w3-container w3-margin-left">
+									<input type="radio" name="{{ x.id }}" value="A"> {{ x.a }}
+									<br>
+									<input type="radio" name="{{ x.id }}" value="B"> {{ x.b }}
+									<br>
+									<input type="radio" name="{{ x.id }}" value="C"> {{ x.c }}
+									<br>
+									<input type="radio" name="{{ x.id }}" value="D"> {{ x.d }}
+								</div>
+							</div>
+							{% endfor %}
+
+							<h2>文法</h2>
+							{% for y in r4.all %}
+							<div id="{{ y.id }}" class="container-fluid bg-secondary" style="padding-top:22px;padding-bottom:70px">
+								<h3>{{ forloop.counter }}.{{y.question}}</h3>
+								<div class="w3-container w3-margin-left">
+									<input type="radio" name="{{ y.id }}" value="A"> {{ y.a }}
+									<br>
+									<input type="radio" name="{{ y.id }}" value="B"> {{ y.b }}
+									<br>
+									<input type="radio" name="{{ y.id }}" value="C"> {{ y.c }}
+									<br>
+									<input type="radio" name="{{ y.id }}" value="D"> {{ y.d }}
+								</div>
+							</div>
+							{% endfor %}
+
+							<h2>段落理解</h2>
+							{% for z in r5.all %}
+							<div id="{{ z.id }}" class="container-fluid bg-secondary" style="padding-top:22px;padding-bottom:70px">
+								<h3>{{ forloop.counter }}.{{z.question}}</h3>
+								<div class="w3-container w3-margin-left">
+									<input type="radio" name="{{ z.id }}" value="A"> {{ z.a }}
+									<br>
+									<input type="radio" name="{{ z.id }}" value="B"> {{ z.b }}
+									<br>
+									<input type="radio" name="{{ z.id }}" value="C"> {{ z.c }}
+									<br>
+									<input type="radio" name="{{ z.id }}" value="D"> {{ z.d }}
+								</div>
+							</div>
+							{% endfor %}
+							<br><button class="btn btn-success" type="submit" onclick="window.close();">確定</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

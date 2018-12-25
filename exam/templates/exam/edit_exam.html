@@ -1,0 +1,45 @@
+{% extends 'base/exam_manager_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-修改考試 {% endblock%}
+{% block content %}
+	<div class='container w3-myfont'>
+		<div class="row">
+			<div class="col">
+				 <div class="panel panel-default">
+					<div class="panel-heading"><h4>修改考試</h4></div>
+					 <div class="panel-body">
+					 	<button class="w3-button w3-white w3-border w3-round-large" onclick="window.open({% url 'addexam_computer' %})">新增考卷</a></button>
+						<button class="w3-button w3-white w3-border w3-round-large" onclick="window.open({% url 'member_select' %})">新增受測者名單</a></button>
+					 	<button class="w3-button w3-white w3-border w3-round-large" onclick="window.open({% url 'check_topic' %})">檢視考卷</a></button>
+					 	<button class="w3-button w3-white w3-border w3-round-large" onclick="window.open({% url 'check_member' %})">檢視受測者名單</a></button>
+						<br><br>
+						<form name='my form' action='.' method='POST'>
+							{% csrf_token %}
+							<div class="w3-panel w3-pale-light-grey w3-bottombar w3-border-light-grey w3-border w3-round-large">
+									<h4>選擇考卷編號：<br></h4>
+										<div>
+											<h5>{{ edit_form_exam.topic }}</h5>
+										</div>
+								</div>
+								<div class="w3-panel w3-pale-light-grey w3-bottombar w3-border-light-grey w3-border w3-round-large">
+									<h4>選擇考試時間:<br></h4>
+										<div>
+											<h5>{{ edit_form_exam.ddate}}</h5>
+										</div>
+								</div>
+								<div class="w3-panel w3-pale-light-grey w3-bottombar w3-border-light-grey w3-border w3-round-large">
+									<h4>選擇受測者名單:<br></h4>
+										<div>
+											<h5>{{ edit_form_exam.member}}</h5>
+										</div>
+								</div>
+							<br>
+							<button class="w3-button w3-white w3-border w3-round-large" type='submit'>送出</button>
+							<button class="w3-button w3-white w3-border w3-round-large"type='reset'>清除重填</button>
+						</form>
+					 </div>
+				 </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

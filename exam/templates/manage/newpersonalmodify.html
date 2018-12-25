@@ -1,0 +1,88 @@
+{% extends 'base/Base.html' %}
+{% load staticfiles %}
+{% block title %}ALCPT測驗系統-首頁{% endblock %}
+{% block content %}
+{% include 'base/Index_nav.html' %}
+{% include 'base/ShowTime.html' %}
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("確定要修改嗎?");
+if (r==true)
+  {
+  alert("修改成功!");
+  return true;
+  }
+else
+  {
+  return false;
+  }
+}
+</script>
+    <div class="container  w3-large">
+        <div class="panel panel-default">
+            <div class="panel-heading w3-center">
+                <h3>修改個人資料</h3>
+            </div>
+
+            <form action="" method="post" class="w3-container ">
+                    {% csrf_token %}
+                <center>
+                    <div class="w3-margin">
+                        密碼：
+                        <input class="w3-input w3-border w3-round" type="text" name="psd" style="width:30%" value="">
+                    </div>
+                    <div class="w3-margin">
+                        再次輸入密碼：
+                        <input class="w3-input w3-border w3-round" type="text" name="psd2" style="width:30%" id="password2">
+                    </div>
+                    <div class="w3-margin">
+                        姓名：
+                        <input class="w3-input w3-border w3-round" type="text" name="name" style="width:30%" id="name" value="">
+                    </div>
+
+
+                    <div class="w3-margin">
+                            性別：
+                            <input class="w3-radio" type="radio" value="男" name="sex" checked>
+                            <label>男</label>
+                            <input class="w3-radio" type="radio" value="女" name="sex">
+                            <label>女</label>
+                    </div>
+                    <div class="w3-margin">
+                        系別：
+                        <select class="w3-select" style="width:30%" name="department" id="department">
+                            <option value="" disabled selected >請選擇</option>
+                            <option value="1">法律系</option>
+                            <option value="2">資管系</option>
+                            <option value="3">運管系</option>
+                            <option value="4">財管系</option>
+                        </select>
+                    </div>
+                    <div class="w3-margin">
+                        年班：
+                        <input class="w3-input w3-border w3-round"  type="text" name="cy" style="width:30%" id="cy" value="">
+                    </div>
+                    <div class="w3-margin">
+                        中隊：
+                            <select class="w3-select" name="company" style="width:30%" id="company">
+                            <option value="" disabled selected>請選擇</option>
+                            <option value="1">學生一中隊</option>
+                            <option value="2">學生二中隊</option>
+                            <option value="3">學生三中隊</option>
+                            <option value="4">學生四中隊</option>
+                            <option value="5">實習旅部</option>
+                        </select>
+                    </div>
+                    <div class="w3-margin">
+                        隊號：<input class="w3-input w3-border w3-round"type="text" name="comp_num" style="width:30%" id="c_number" value="">
+                    </div>
+
+                    <button class="w3-btn w3-white w3-border w3-round-large w3-margin" type="submit" value="修改" onclick="javascript:return show_confirm()">修改</button>
+                </center>
+            </form>
+            {{username}}
+            </div>
+        </div>
+ </div>
+{% endblock %}

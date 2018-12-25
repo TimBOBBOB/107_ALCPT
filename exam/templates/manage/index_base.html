@@ -1,0 +1,68 @@
+{% extends 'base/Base.html' %}
+{% load staticfiles %}
+{% block title %}ALCPT測驗系統-首頁{% endblock %}
+{% block content %}
+{% include 'base/Index_nav.html' %}
+{% include 'base/ShowTime.html' %}
+{% if NOWUser.Username != NOWUser.FullName %}
+<script language="JavaScript">
+ function myrefresh()
+ {
+      window.location.reload();
+ }
+</script>
+{% endif %}
+<br>
+<div class="container w3-myfont ml-auto">
+  <div class="row">
+    {% if '1' in NOWUser.Authority %}
+    <div class="col-sm-4 ">
+        <a href="{% url 'SAhome' %}"><img src="{% static "images/12.jpg" %}" class="img-responsive" style="width:80%" alt="Image"></a><br>
+    </div>
+    {% endif %}
+    {% if '2' in NOWUser.Authority %}
+    <div class="col-sm-4">
+        <a href="{% url 'exam_manager' %}"><img src="{% static "images/14.jpg" %}" class="img-responsive" style="width:80%" alt="Image"></a><br>
+    </div>
+    {% endif %}
+    {% if '3' in NOWUser.Authority %}
+    <div class="col-sm-4">
+        <a href="{% url 'question_manager' %}"><img src="{% static "images/17.jpg" %}" class="img-responsive" style="width:80%" alt="Image"></a><br>
+    </div>
+    {% endif %}
+    {% if '6' in NOWUser.Authority %}
+    <div class="col-sm-4">
+       <a href="{% url 'addquestion_e' %}"><img src= "{% static "images/13.jpg" %}" class="img-responsive" style="width:80%" alt="Image"></a><br>
+    </div>
+    {% endif %}
+    {% if '4' in NOWUser.Authority %}
+    <div class="col-sm-4">
+        <a href="{% url 'view_score' %}"><img src="{% static "images/15.jpg" %}" class="img-responsive" style="width:80%" alt="Image"></a><br>
+    </div>
+    {% endif %}
+    {% if '5' in NOWUser.Authority %}
+    <div class="col-sm-4">
+       <a href="{% url 'subjects' %}"><img src="{% static "images/16.jpg" %}" class="img-responsive" style="width:80%" alt="Image"></a><br>
+    </div>
+    {% endif %}
+    {% if '5' in NOWUser.Authority %}
+    <div class="col-sm-4">
+        <a href="{% url 'personalmodify' %}"><img src= "{% static "images/18.jpg" %}" class="img-responsive" style="width:80%" alt="Image"></a>
+    </div>
+    {% endif %}
+    {% if '5' not in NOWUser.Authority %}
+    <div class="col-sm-4">
+        <a href="{% url 'personalmodify2' %}"><img src= "{% static "images/18.jpg" %}" class="img-responsive" style="width:80%" alt="Image"></a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+
+
+        
+    
+    
+    
+    

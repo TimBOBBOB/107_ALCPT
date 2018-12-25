@@ -1,0 +1,19 @@
+{% extends 'base/question_manager_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-題庫管理員 {% endblock%}
+{% block content %}
+<br>
+<div class="container w3-myfont">
+  <div class="row">
+      <div class="col-sm-4">
+          <td><a href="{% url 'addquestion'%}"><img src="{% static "images/29.jpg" %}" class="img-responsive" style="width:80%" alt="addquestion"/></a></td>
+      </div>
+      <div class="col-sm-4">
+          <td><a href="{% url 'review'%}"><img src="{% static "images/28.jpg" %}" class="img-responsive" style="width:80%" alt="review"/></a></td>
+      </div>
+      <div class="col-sm-4">
+        <td><a href="{% url 'listingquestion'%}"><img src="{% static "images/30.jpg" %}" class="img-responsive" style="width:80%" alt="listingquestion"/></a></td>
+      </div>
+  </div>
+</div>
+{% endblock %}

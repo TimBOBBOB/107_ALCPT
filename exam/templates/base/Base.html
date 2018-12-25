@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}ＢＡＳＥ{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    {% load staticfiles %}
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}" />
+    <script src="/admin/jsi18n/"></script>
+    <script src="{% static 'admin/js/core.js' %}"></script>
+    <script src="{% static 'admin/js/jquery.init.both.js' %}"></script>
+    <script src="{% static 'admin/js/calendar.js' %}"></script>
+    <script src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
+    <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static 'admin/' %}{% endfilter %}";</script>
+    <script src="{% static 'admin/js/jquery.js' %}"></script>
+    <script src="{% static 'admin/js/jquery.init.js' %}"></script>
+
+
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jqueryui/style.css">
+
+
+    <script>
+    $(function() {
+       $( "#datepicker" ).datepicker({dateFormat:"yy-mm-dd",
+         changeMonth:true,
+         changeYear:true,
+         showMonthAfterYear:true
+            });
+       $( "#datepicker1" ).datepicker({dateFormat:"yy-mm-dd",
+          changeMonth:true,
+          changeYear:true,
+          showMonthAfterYear:true
+            });
+       $( "#datepicker2" ).datepicker({dateFormat:"yy-mm-dd",
+          changeMonth:true,
+          changeYear:true,
+          showMonthAfterYear:true
+            });
+        });
+    </script>
+
+</head>
+<body>
+    {% block h %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% include 'base/Bottom.html' %}
+</body>
+</html>

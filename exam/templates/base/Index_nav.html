@@ -1,0 +1,62 @@
+<body{% if '1' in NOWUser.Authority %}
+style="background-color:lightpink;"
+{% endif %}
+{% if '4' in NOWUser.Authority %}
+style="background-color:lightgoldenrodyellow;"
+{% endif %}
+{% if '6' in NOWUser.Authority %}
+style="background-color:palegreen;"
+{% endif %}
+{% if '3' in NOWUser.Authority %}
+style="background-color:#628dfc;"
+{% endif %}
+{% if '2' in NOWUser.Authority %}
+style="background-color:#f3baff;"
+{% endif %}
+{% if '5' in NOWUser.Authority %}
+style="background-color:lightgray;"
+{% endif %}>
+
+<script type="text/javascript">
+function show_confirm()
+{
+var r=confirm("確定要登出嗎?");
+if (r==true)
+  {
+  alert("登出成功!");
+  return true;
+  }
+else
+  {
+  return false;
+  }
+}
+</script>
+<nav class="navbar navbar-inverse w3-myfont">
+  <div class="container-fluid w3-large">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand w3-xlarge" href="{% url 'Index'%}">ALCPT線上練習平台</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        {% if '1' in NOWUser.Authority %}<li><a href="{% url 'SAhome' %}">系統管理員</a></li>{% endif %}
+        {% if '2' in NOWUser.Authority %}<li><a href="{% url 'exam_manager' %}">考試管理員</a></li>{% endif %}
+        {% if '3' in NOWUser.Authority %}<li><a href="{% url 'question_manager' %}">題庫管理員</a></li>{% endif %}
+        {% if '6' in NOWUser.Authority %}<li><a href="{% url 'addquestion_e' %}">題庫操作員</a></li>{% endif %}
+        {% if '4' in NOWUser.Authority %}<li><a href="{% url 'view_score' %}">成績檢閱者</a></li>{% endif %}
+        {% if '5' in NOWUser.Authority %}<li><a href="{% url 'subjects' %}">受測者</a></li>{% endif %}
+        {% if '5' in NOWUser.Authority %}<li><a href="{% url 'personalmodify' %}">修改個人資料</a></li>{% endif %}
+        {% if '5' not in NOWUser.Authority %}<li><a href="{% url 'personalmodify2' %}">修改個人資料</a></li>{% endif %}
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a data-toggle="tab" href="#"><span class="glyphicon glyphicon-user"></span> {{ username }}</a></li>
+         <li><a href="{% url 'login2' %}?action=logout" onclick="javascript:return show_confirm()"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+      </ul>
+    </div>
+    </div>
+</nav>

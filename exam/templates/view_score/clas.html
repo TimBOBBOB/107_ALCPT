@@ -1,0 +1,202 @@
+{% extends 'base/view_score_base.html' %}
+{% block title %} ALCPT測驗系統-成績檢閱者-班級單次 {% endblock%}
+{% block content %}
+<div class="container w3-myfont">
+    <div class="row">
+        <div class="col">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>檢閱成績</h4></div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#home" data-toggle="tab">班級單次成績資料</a></li>
+                        <li><a href="#menu1" data-toggle="tab">班級/單次</a></li>
+                        <li><a href="#menu2" data-toggle="tab">中隊/單次</a></li>
+                        <li><a href="#menu3" data-toggle="tab">個人/單次</a></li>
+                        <li><a href="#menu4" data-toggle="tab">班級/歷次</a></li>
+                        <li><a href="#menu5" data-toggle="tab">中隊/歷次</a></li>
+                        <li><a href="#menu6" data-toggle="tab">個人/歷次</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="home">
+                            <div class="w3-container">
+                                <div class="w3-panel w3-pale-light-grey w3-bottombar w3-border-light-grey w3-border w3-round-large">
+                                    		<h4>{{errormessage}}</h4>
+                                            <h4>教授班：{{de.Name}}</h4>
+                                            <h4>年班:{{c}}</h4>
+                                            <h4>人數：{{peo}}</h4>
+                                            <h4>測驗人數：{{p_intest}}</h4>
+                                            <h4>平均分數：{{comp_avg}}</h4>
+                                            <h4>英語能力級別平均：{{lv}}</h4>
+                                    <table style="" cellpadding="10" border='1'>
+                                        <tr>
+                                            <td align="center">學生學號</td>
+                                            <td align="center">姓名</td>
+                                            <td align="center">中隊</td>
+                                            <td align="center">隊號</td>
+                                            <td align="center">考試日期</td>
+                                            <td align="center">分數</td>
+                                        </tr>
+                                         {% for s in data %}
+                                         <tr>
+                                             {% for i in s %}
+                                             <td align="center" valign="center"><h5>{{i}}</h5></td>
+                                             {% endfor %}
+                                         </tr>
+                                         {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                <div class="tab-pane fade" id="menu1">
+                                 <h3>
+                                     <form action="/clas/" method="POST" name="sc1">
+                                         {% csrf_token %}
+                                        系別：
+                                        <select name="dep">
+                                            <option value="1">法律系</option>
+                                            <option value="2">資管系</option>
+                                            <option value="3">運籌系</option>
+                                            <option value="4">財管系</option>
+                                            </select>
+                                        年班：
+                                            <input name="cla" type="text" size="10">
+                                            <p></p>
+                                        <p>日期：<input name="date" type="text"  id="datepicker" value=""></p>
+                                    <button type="submit" class="w3-button  w3-white w3-border w3-round w3-padding-large w3-large">查詢</button>
+                                    </form>
+                                 </h3>
+                                </div>
+                         <div class="tab-pane fade" id="menu2">
+                                <h3>
+                                    <form action="/comp/" method="POST" name="sc1">
+                                        {% csrf_token %}
+                                        中隊：
+                                        <select name="comp" >
+                                            <option value="1">學生一中隊</option>
+                                            <option value="2">學生二中隊</option>
+                                            <option value="3">學生三中隊</option>
+                                            <option value="4">學生四中隊</option>
+                                            <option value="5">實習旅部</option>
+                                        </select><p></p>
+                                    <p>日期：<input name="date" type="text"  id="datepicker1" value=""></p>
+                                    <button type="submit" class="w3-button  w3-white w3-border w3-round w3-padding-large w3-large">查詢</button>
+                                    </form>
+                                </h3>
+                            </div>
+                         <div class="tab-pane fade" id="menu3">
+                                <h3>
+                                    <form action="/check/" method="POST" name="sc1">
+                                        {% csrf_token %}
+                                        學號或姓名：
+                                        <input name="id" type="text"><p></p>
+                                        <p>日期：<input name="date" type="text"  id="datepicker2" value=""></p>
+                                        <button type="submit" class="w3-button  w3-white w3-border w3-round w3-padding-large w3-large">查詢</button>
+                                    </form>
+                                 </h3>
+                            </div>
+                         <div class="tab-pane fade" id="menu4">
+                                 <form action="/clas_s/" method="POST" name="sc1">
+                                    {% csrf_token %}
+                                        <h3>系別：
+                                            <select name="maj">
+                        　				        <option value="1">法律系</option>
+                        　				        <option value="2">資管系</option>
+                        　				        <option value="3">運籌系</option>
+                        　				        <option value="4">財管系</option>
+                                            </select>
+                                            年班：
+                                            <input name="grade" type="text" size="10">
+                                        </h3>
+                                        <h3>年份：
+                                            <input name="ses" type="text" size="10">
+                                        </h3>
+                                        <h3>月份：
+                                            <select name="mon">
+                        　				        <option value="1">一月</option>
+                                　				<option value="2">二月</option>
+                                　				<option value="3">三月</option>
+                                　				<option value="4">四月</option>
+                                                <option value="5">五月</option>
+                                                <option value="6">六月</option>
+                                                <option value="7">七月</option>
+                                                <option value="8">八月</option>
+                                                <option value="9">九月</option>
+                                                <option value="10">十月</option>
+                                                <option value="11">十一月</option>
+                                                <option value="12">十二月</option>
+                                                <option value="0">全年度</option>
+                                            </select>
+                                        </h3>
+                                        <button type="submit" class="w3-button  w3-white w3-border w3-round w3-padding-large w3-large">查詢</button>
+                                 </form>
+                             </div>
+                         <div class="tab-pane fade" id="menu5">
+                             <form action="/comp_s/" method="POST" name="sc1">
+                                 {% csrf_token %}
+                                 <h3>中隊：
+                                    <select name="comp">
+                        　				<option value="1">學生一中隊</option>
+                        　				<option value="2">學生二中隊</option>
+                        　				<option value="3">學生三中隊</option>
+                        　				<option value="4">學生四中隊</option>
+                                        <option value="5">實習旅部</option>
+                                    </select>
+                                 </h3>
+			                    <h3>年份：
+ 			                        <input name="ses" type="text" size="10"></h3>
+                                <h3>月份：
+                                    <select name="mon">
+                        　				<option value="1">一月</option>
+                        　				<option value="2">二月</option>
+                        　				<option value="3">三月</option>
+                        　				<option value="4">四月</option>
+                                        <option value="5">五月</option>
+                                        <option value="6">六月</option>
+                                        <option value="7">七月</option>
+                                        <option value="8">八月</option>
+                                        <option value="9">九月</option>
+                                        <option value="10">十月</option>
+                                        <option value="11">十一月</option>
+                                        <option value="12">十二月</option>
+                                        <option value="0">全年度</option>
+                                    </select>
+                                </h3>
+		                        <button type="submit" class="w3-button  w3-white w3-border w3-round w3-padding-large w3-large">查詢</button>
+                             </form>
+                        </div>
+                         <div class="tab-pane fade" id="menu6">
+                            <form action="/check_s/" method="POST" name="sc1">
+			                {% csrf_token %}
+                            <h3>學號或姓名 ：
+			                    <input name="id" type="text" size="10"></h3>
+			                <h3>年份：
+ 			                    <input name="ses" type="text" size="10"></h3>
+			                <h3>月份：
+                                <select name="mon">
+                    　				<option value="1">一月</option>
+                    　				<option value="2">二月</option>
+                    　				<option value="3">三月</option>
+                    　				<option value="4">四月</option>
+                                    <option value="5">五月</option>
+                                    <option value="6">六月</option>
+                                    <option value="7">七月</option>
+                                    <option value="8">八月</option>
+                                    <option value="9">九月</option>
+                                    <option value="10">十月</option>
+                                    <option value="11">十一月</option>
+                                    <option value="12">十二月</option>
+                                    <option value="0">全年度</option>
+                                </select>
+                            </h3>
+			                <button type="submit" class="w3-button  w3-white w3-border w3-round w3-padding-large w3-large">查詢</button>
+			            </form>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

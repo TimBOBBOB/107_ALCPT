@@ -1,0 +1,12 @@
+{% extends 'base/subjects_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-聽力練習 {% endblock%}
+
+{% block content %}
+<table align = "center"width="600" height="290">
+    <tr>
+        <td><a href="{% url 'talkpractice'%}"><img src="{% static "images/talk.jpg" %}" alt="talkpractice"/></a></td>
+        <td><a href="{% url 'short_conversationpractice'%}"><img src="{% static "images/short_conversation.jpg" %}" alt="short_conversationpractice"/></a></td>
+    </tr>
+</table>
+{% endblock %}

@@ -1,0 +1,9 @@
+<form name="MyForm" method="POST" action="{% url 'rename' %}">
+    {% csrf_token %}
+<input type="hidden" name="name" value="">
+</form>
+<SCRIPT>
+var change = prompt("請輸入您的名字", " ");
+MyForm.name.value=change;
+MyForm.submit();
+</SCRIPT>

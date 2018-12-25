@@ -1,0 +1,13 @@
+{% extends 'base/subjects_base.html' %}
+{% load static %}
+{% block title %} ALCPT測驗系統-閱讀練習 {% endblock%}
+
+{% block content %}
+<table align = "center"width="900" height="290">
+    <tr>
+        <td><a href="{% url 'nounpractice'%}"><img src="{% static "images/noun.jpg" %}" alt="nounpractice"/></a></td>
+        <td><a href="{% url 'grammarpractice'%}"><img src="{% static "images/grammar.jpg" %}" alt="grammarpractice"/></a></td>
+        <td><a href="{% url 'readingpractice'%}"><img src="{% static "images/reading.jpg" %}" alt="readingpractice"/></a></td>
+    </tr>
+</table>
+{% endblock %}
